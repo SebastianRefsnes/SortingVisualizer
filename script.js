@@ -21,7 +21,7 @@ function init(){
   slider.type = "range";
   slider.min= "10";
   slider.max = "100";
-  slider.value = "40";
+  slider.value = "45";
   slider.id = "arraySlider";
   slider.classList.add("slider");
   slider.oninput = sliderChange;
@@ -58,13 +58,4 @@ function buttonPress(){
 function sliderChange(){
   valueArray = newArray(this.value);
   drawNewBackground(valueArray,ctx);
-}
-
-function map(value,start1,stop1,start2,stop2){
-  return (value - start1) / (stop1-start1) * (stop2-start2) + start2;
-}
-function swapValues(array, indexA, indexB){
-  let tempA = array[indexA];
-  array[indexA] = array[indexB];
-  array[indexB] = tempA;
 }
