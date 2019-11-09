@@ -2,6 +2,7 @@ window.onload = init;
 canvas = "";
 ctx = "";
 valueArray = [];
+
 function init(){
   let canvContainer = document.createElement("div");
   canvContainer.id = "canvasContainer";
@@ -26,6 +27,24 @@ function init(){
   slider.classList.add("slider");
   slider.oninput = sliderChange;
 
+  let list = document.createElement("select");
+  list.name = "Sorting algorithms";
+  list.id = "sortingList";
+
+  let bubbleOption = document.createElement("option");
+  bubbleOption.value = "bubble";
+  bubbleOption.innerHTML = "BubbleSort";
+  bubbleOption.classList.add("algorithmOptions")
+
+  let quickOption = document.createElement("option");
+  quickOption.value = "quick";
+  quickOption.innerHTML = "QuickSort";
+  quickOption.classList.add("algorithmOptions")
+
+
+  list.appendChild(bubbleOption);
+  list.appendChild(quickOption);
+
   let title = document.createElement("h1");
   title.innerHTML = "Sorting Algorithm Visualizer";
   title.id = "canvasTitle";
@@ -38,6 +57,7 @@ function init(){
   document.body.appendChild(canvContainer);
   document.body.appendChild(controlsContainer);
 
+  controlsContainer.appendChild(list);
   controlsContainer.appendChild(slider);
   controlsContainer.appendChild(goButton);
 
@@ -48,14 +68,24 @@ function init(){
   ctx = canvas.getContext("2d");
 
   valueArray = newArray(slider.value);
+  setInterval(draw, 60);
+}
+
+function draw(){
   drawNewBackground(valueArray,ctx);
 }
 
-
 function buttonPress(){
-  bubbleSort(valueArray);
+  let val = document.getElementById("sortingList").value;
+  switch (val) {
+    case "quick":
+    quickSort(valueArray);
+      break;
+    case "bubble":
+    bubbleSort(valueArray);
+      break;
+  }
 }
 function sliderChange(){
   valueArray = newArray(this.value);
-  drawNewBackground(valueArray,ctx);
 }

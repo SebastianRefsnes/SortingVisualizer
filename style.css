@@ -8,7 +8,28 @@ body{
   font-size: 40px;
   color: white;
 }
-.algoControls{
+#sortingList{
+  height: 25px;
+  background-color: grey;
+  border: none;
+  position: relative;
+  font-family: monospace;
+}
+
+
+
+#controlsContainer select {
+  color: white;
+  border: none;
+  -webkit appearance: button;
+  appearance: button;
+  outline: none;
+}
+#controlsContainer select option:hover{
+  background-color: green;
+  border: none;
+}
+.algorithmOptions:hover{
 
 }
 .buttons{
