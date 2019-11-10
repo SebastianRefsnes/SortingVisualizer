@@ -9,11 +9,13 @@ body{
   color: white;
 }
 #sortingList{
-  height: 25px;
+  height: 30px;
   background-color: grey;
   border: none;
   position: relative;
   font-family: monospace;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 
@@ -34,12 +36,14 @@ body{
 }
 .buttons{
   width: 80px;
-  height: 40px;
+  height: 30px;
   border: none;
-  background-color: #FFFFFF;
-  color: black;
+  background-color: grey;
+  color: white;
   margin: 2px 2px;
   cursor: pointer;
+  font-size: 20px;
+  font-family: monospace;
 
 }
 .slider{

@@ -2,6 +2,7 @@ window.onload = init;
 canvas = "";
 ctx = "";
 valueArray = [];
+swapDelay = 1;
 
 function init(){
   let canvContainer = document.createElement("div");
@@ -21,8 +22,8 @@ function init(){
   let slider = document.createElement("input");
   slider.type = "range";
   slider.min= "10";
-  slider.max = "100";
-  slider.value = "45";
+  slider.max = "1000";
+  slider.value = "200";
   slider.id = "arraySlider";
   slider.classList.add("slider");
   slider.oninput = sliderChange;
@@ -36,6 +37,11 @@ function init(){
   bubbleOption.innerHTML = "BubbleSort";
   bubbleOption.classList.add("algorithmOptions")
 
+  let cocktailOption = document.createElement("option");
+  cocktailOption.value = "cocktail";
+  cocktailOption.innerHTML = "CocktailSort";
+  cocktailOption.classList.add("algorithmOptions")
+
   let quickOption = document.createElement("option");
   quickOption.value = "quick";
   quickOption.innerHTML = "QuickSort";
@@ -43,6 +49,7 @@ function init(){
 
 
   list.appendChild(bubbleOption);
+  list.appendChild(cocktailOption);
   list.appendChild(quickOption);
 
   let title = document.createElement("h1");
@@ -51,7 +58,7 @@ function init(){
 
   canvas = document.createElement("canvas");
   canvas.id = "sortingCanvas";
-  canvas.width = "900";
+  canvas.width = "1600";
   canvas.height = "600";
 
   document.body.appendChild(canvContainer);
@@ -79,10 +86,13 @@ function buttonPress(){
   let val = document.getElementById("sortingList").value;
   switch (val) {
     case "quick":
-    quickSort(valueArray);
+   quickSort(valueArray);
       break;
     case "bubble":
     bubbleSort(valueArray);
+      break;
+    case "cocktail":
+    cocktailSort(valueArray);
       break;
   }
 }

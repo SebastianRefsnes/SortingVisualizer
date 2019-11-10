@@ -10,16 +10,39 @@ async function bubbleSort(array){
     bubbleSort(array);
   }
 }
+async function cocktailSort(array){
+  let swaps = 0;
+  //Left to right
+  for(let i = 0; i < array.length; i++){
+    if(array[i] > array[i+1] && i != array.length-1){
+      await swapValues(array,i,i+1);
+      swaps++;
+    }
+  }
+  if(swaps == 0){
+    return
+  }
+  //Right to Left
+  for(let i = array.length; i > 0; i--){
+    if(array[i] < array[i-1]){
+      await swapValues(array,i,i-1);
+      swaps++;
+    }
+  }
+  cocktailSort(array);
 
-async function quickSort(array,start=0,end=array.length){
+}
+
+async function quickSort(array,start=0,end=array.length-1){
   if(start >= end){
     return;
   }
   let pivotFinal = await partition(array,start,end);
   await Promise.all([
-    quickSort(array,start,pivotFinal-1)
+     quickSort(array,start,pivotFinal-1)
     ,quickSort(array,pivotFinal+1,end)
   ]);
+
 
 }
 
@@ -47,11 +70,11 @@ function drawNewBackground(array,context,color="white",min=0, max=100){
   array.forEach((value,i) => {
     let height = map(value,min,max,canvas.height,0);
     context.fillStyle = color;
-    context.fillRect(width*i,height,width-1,canvas.height);
+    context.fillRect(width*i,height,width-(width/10),canvas.height);
   });
 }
 
-function newArray(points, min=0, max=100){
+function newArray(points, min=10, max=100){
   let array = [];
   for(let i = 0; i < points; i++){
     let randomVal = Math.random();
@@ -71,7 +94,7 @@ function sleep (ms) {
 }
 
 async function swapValues(array, indexA, indexB){
-  await sleep(10);
+  await sleep(swapDelay);
   let tempA = array[indexA];
   array[indexA] = array[indexB];
   array[indexB] = tempA;
