@@ -5,7 +5,23 @@
         <meta charset="utf-8" />
         <title>Sorting algorith visualizer</title>
         <script src="script.js"></script>
-        <script src="algorithms.js"></script>
+        <script src="Algorithms.js"></script>
     </head>
-    <body></body>
+    <body>
+        <div id="canvasContainer">
+            <h1 id="canvasTitle">Sorting Algorithm Visualizer</h1>
+            <canvas id="sortingCanvas"></canvas>
+        </div>
+        <div id="controlsContainer">
+            <select id="sortingList" name="Sorting algorithms">
+                <option class="algorithmOptions" value="bubble">Bubblesort</option>
+                <option class="algorithmOptions" value="cocktail">Cocktailsort</option>
+                <option class="algorithmOptions" value="insertion">Insertion sort</option>
+                <option class="algorithmOptions" value="quick">Quicksort</option>
+            </select>
+            <input id="arraySlider" class="slider" type="range" min="10" max="1000" value="200" oninput="sliderChange(this)">
+            <button id="new" class="algoControls buttons" onclick="buttonPress(this)">Randomize!</button>
+            <button id="sortButton" class="algoControls buttons" onclick="buttonPress(this)">Sort!</button>
+        </div>
+    </body>
 </html>
