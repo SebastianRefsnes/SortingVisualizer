@@ -1,18 +1,21 @@
 async function bubbleSort(array) {
   let swaps = 0;
-  for(let i = 0; i < array.length; i++) {
+  for(let j = 0; j < array.length; j++) {
+  for(let i = 0; i < array.length-j; i++) {
     if(array[i] > array[i+1] && i != array.length-1) {
       await swapValues(array, i, i + 1);
       swaps++;
     }
   }
-  if(swaps != 0) bubbleSort(array);
+  if(swaps == 0) return;
+  }
 }
 
 async function cocktailSort(array) {
   let swaps = 0;
   //Left to right
-  for(let i = 0; i < array.length; i++) {
+  for(let j = 0; j < array.length; j++){
+  for(let i = 0; i < array.length-j; i++) {
     if(array[i] > array[i + 1] && i != array.length - 1) {
       await swapValues(array,i,i+1);
       swaps++;
@@ -20,18 +23,18 @@ async function cocktailSort(array) {
   }
   if(swaps == 0) return
   //Right to Left
-  for(let i = array.length; i > 0; i--) {
+  for(let i = array.length; i > 0+j; i--) {
     if(array[i] < array[i-1]) {
       await swapValues(array, i, i - 1);
       swaps++;
     }
   }
-  cocktailSort(array);
+}
 }
 
 async function quickSort(array, start=0, end=array.length-1) {
   if(start >= end) return;
-  
+
   let pivotFinal = await partition(array,start,end);
   await Promise.all([
      quickSort(array,start,pivotFinal-1),

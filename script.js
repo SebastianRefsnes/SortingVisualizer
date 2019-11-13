@@ -53,7 +53,10 @@ function draw() {
 }
 
 function buttonPress() {
-  if(this.id == "new") valueArray = newArray(document.getElementById("arraySlider").value);
+  if(this.id == "new") {
+    valueArray = newArray(document.getElementById("arraySlider").value);
+    return;
+  }
 
   let val = document.getElementById("sortingList").value;
   switch (val) {
