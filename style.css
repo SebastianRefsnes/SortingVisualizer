@@ -1,16 +1,17 @@
 body{
   background-color: #474747;
 }
+
 ::-webkit-scrollbar {
   display: none;
 }
-#canvasContainer{
-}
+
 #canvasTitle{
   font-family: sans-serif;
   font-size: 40px;
   color: white;
 }
+
 #sortingList{
   height: 30px;
   background-color: grey;
@@ -21,22 +22,19 @@ body{
   cursor: pointer;
 }
 
-
-
 #controlsContainer select {
   color: white;
   border: none;
-  -webkit appearance: button;
+  -webkit-appearance: button;
   appearance: button;
   outline: none;
 }
+
 #controlsContainer select option:hover{
   background-color: green;
   border: none;
 }
-.algorithmOptions:hover{
 
-}
 .buttons{
   width: 120px;
   height: 30px;
@@ -47,8 +45,8 @@ body{
   cursor: pointer;
   font-size: 20px;
   font-family: monospace;
-
 }
+
 .slider{
   -webkit-appearance: none;
   appearance: none;
@@ -58,6 +56,7 @@ body{
   outline: none;
   background: #d3d3d3;
 }
+
 .slider::-webkit-slider-thumb{
   -webkit-appearance: none;
   appearance: none;

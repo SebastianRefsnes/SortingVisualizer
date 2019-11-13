@@ -10,6 +10,7 @@ async function bubbleSort(array){
     bubbleSort(array);
   }
 }
+
 async function cocktailSort(array){
   let swaps = 0;
   //Left to right
@@ -30,7 +31,6 @@ async function cocktailSort(array){
     }
   }
   cocktailSort(array);
-
 }
 
 async function quickSort(array,start=0,end=array.length-1){
@@ -39,8 +39,8 @@ async function quickSort(array,start=0,end=array.length-1){
   }
   let pivotFinal = await partition(array,start,end);
   await Promise.all([
-     quickSort(array,start,pivotFinal-1)
-    ,quickSort(array,pivotFinal+1,end)
+     quickSort(array,start,pivotFinal-1),
+     quickSort(array,pivotFinal+1,end)
   ]);
 }
 
@@ -61,9 +61,9 @@ function drawNewBackground(array,context,color="white",min=0, max=1000){
   context.fillStyle = "black";
   context.fillRect(0,0,canvas.width,canvas.height);
 
-  let width = (canvas.width / array.length);
+  let width = canvas.width / array.length;
 
-  array.forEach((value,i) => {
+  array.forEach((value, i) => {
     let height = map(value,min,max,canvas.height,0);
     context.fillStyle = color;
     context.fillRect(width*i,height,width-(width/10),canvas.height);
@@ -73,12 +73,16 @@ function drawNewBackground(array,context,color="white",min=0, max=1000){
 function newArray(points, min=10, max=1000){
   let array = [];
   for(let i = 0; i < points; i++){
-    let randomVal = Math.random();
-    randomVal = map(randomVal,0,1,min,max);
-    randomVal = Math.round(randomVal);
-    array.push(randomVal);
+    array.push(Math.round(map(Math.random(),0,1,min,max)));
   }
   return array;
+}
+
+async function swapValues(array, indexA, indexB){
+  await sleep(swapDelay);
+  let tempA = array[indexA];
+  array[indexA] = array[indexB];
+  array[indexB] = tempA;
 }
 
 function map(value,start1,stop1,start2,stop2){
@@ -87,11 +91,4 @@ function map(value,start1,stop1,start2,stop2){
 
 function sleep (ms) {
   return new Promise(resolve => setTimeout(resolve,ms));
-}
-
-async function swapValues(array, indexA, indexB){
-  await sleep(swapDelay);
-  let tempA = array[indexA];
-  array[indexA] = array[indexB];
-  array[indexB] = tempA;
 }

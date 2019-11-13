@@ -1,93 +1,49 @@
-window.onload = init;
-canvas = "";
-ctx = "";
-windowWidth = 0;
-windowHeight = 0;
-valueArray = [];
-swapDelay = 1;
-
-function init(){
-
+window.onload = () => {
+  // Globals
+  swapDelay = 1;
   windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
 
-  let canvContainer = document.createElement("div");
-  canvContainer.id = "canvasContainer";
+  // Create HTML elements ('type', 'id', ...classes)
+  let canvContainer = createElement("div", "canvasContainer");
+  let controlsContainer = createElement("div", "controlsContainer");
+  let goButton = createElement("button", "sortButton", "algoControls", "buttons");
+  let newButton = createElement("button", "new", "algoControls", "buttons");
+  let slider = createElement("input", "arraySlider", "slider");
+  let list = createElement("select", "sortingList");
+  let bubbleOption = createElement("option", undefined, "algorithmOptions");
+  let cocktailOption = createElement("option", undefined, "algorithmOptions");
+  let quickOption = createElement("option", undefined, "algorithmOptions");
+  let title = createElement("h1", "canvasTitle");
+  canvas = createElement("canvas", "sortingCanvas");
 
-  let controlsContainer = document.createElement("div");
-  controlsContainer.id = "controlsContainer";
-
-  let goButton = document.createElement("button");
-  goButton.classList.add("algoControls");
-  goButton.classList.add("buttons");
+  // Edit HTML elements
   goButton.innerHTML = "Sort!";
-  goButton.id = "sortButton";
-  goButton.addEventListener("click",buttonPress);
-
-  let newButton = document.createElement("button");
-  newButton.classList.add("algoControls");
-  newButton.classList.add("buttons");
+  goButton.addEventListener("click", buttonPress);
   newButton.innerHTML = "Randomize!";
-  newButton.id = "new";
-  newButton.addEventListener("click",buttonPress);
-
-
-  let slider = document.createElement("input");
+  newButton.addEventListener("click", buttonPress);
   slider.type = "range";
-  slider.min= "10";
-  slider.max = "1000";
-  slider.value = "200";
-  slider.id = "arraySlider";
-  slider.classList.add("slider");
+  slider.min= "10", slider.max = "1000", slider.value = "200";
   slider.oninput = sliderChange;
-
-  let list = document.createElement("select");
   list.name = "Sorting algorithms";
-  list.id = "sortingList";
-
-  let bubbleOption = document.createElement("option");
   bubbleOption.value = "bubble";
   bubbleOption.innerHTML = "BubbleSort";
-  bubbleOption.classList.add("algorithmOptions")
-
-  let cocktailOption = document.createElement("option");
   cocktailOption.value = "cocktail";
   cocktailOption.innerHTML = "CocktailSort";
-  cocktailOption.classList.add("algorithmOptions")
-
-  let quickOption = document.createElement("option");
   quickOption.value = "quick";
   quickOption.innerHTML = "QuickSort";
-  quickOption.classList.add("algorithmOptions")
-
-
-  list.appendChild(bubbleOption);
-  list.appendChild(cocktailOption);
-  list.appendChild(quickOption);
-
-  let title = document.createElement("h1");
   title.innerHTML = "Sorting Algorithm Visualizer";
-  title.id = "canvasTitle";
 
-  canvas = document.createElement("canvas");
-  canvas.id = "sortingCanvas";
-  canvas.width =(windowWidth*0.9);
-  canvas.height = (windowHeight*0.75);
+  canvas.width = windowWidth * 0.9;
+  canvas.height = windowHeight * 0.75;
 
-  document.body.appendChild(canvContainer);
-  document.body.appendChild(controlsContainer);
-
-  controlsContainer.appendChild(list);
-  controlsContainer.appendChild(slider);
-  controlsContainer.appendChild(newButton);
-  controlsContainer.appendChild(goButton);
-
-  canvContainer.appendChild(title);
-  canvContainer.appendChild(canvas);
-
+  // Add HTML elements
+  appendElements(list, bubbleOption, cocktailOption, quickOption);
+  appendElements(document.body, canvContainer, controlsContainer);
+  appendElements(controlsContainer, list, slider, newButton, goButton);
+  appendElements(canvContainer, title, canvas);
 
   ctx = canvas.getContext("2d");
-
   valueArray = newArray(slider.value);
   setInterval(draw, 60);
 }
@@ -97,23 +53,27 @@ function draw(){
 }
 
 function buttonPress(){
-  if(this.id == "new"){
-    valueArray = newArray(document.getElementById("arraySlider").value);
-    return;
-  }
+  if(this.id == "new") valueArray = newArray(document.getElementById("arraySlider").value);
+
   let val = document.getElementById("sortingList").value;
   switch (val) {
-    case "quick":
-   quickSort(valueArray);
-      break;
-    case "bubble":
-    bubbleSort(valueArray);
-      break;
-    case "cocktail":
-    cocktailSort(valueArray);
-      break;
+    case "quick": quickSort(valueArray); break;
+    case "bubble": bubbleSort(valueArray); break;
+    case "cocktail": cocktailSort(valueArray); break;
   }
 }
+
 function sliderChange(){
   valueArray = newArray(this.value);
+}
+
+function createElement(type, id, ...classes) {
+  let e = document.createElement(type);
+  if(id != undefined) e.id = id;
+  classes.forEach(c => e.classList.add(c));
+  return e;
+}
+
+function appendElements(parent, ...childs) {
+  childs.forEach(child => parent.appendChild(child));
 }
