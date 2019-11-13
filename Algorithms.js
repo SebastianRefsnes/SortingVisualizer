@@ -32,6 +32,18 @@ async function cocktailSort(array) {
 }
 }
 
+async function insertionSort(array) {
+  for(let i = 0; i < array.length; i++){
+    for(let j = i; j < array.length; j++){
+      for(let z = 0; z < i; z++){
+    if(array[i-z] < array[i-1-z]){
+      await swapValues(array, i-z, i-1-z);
+    }
+  }
+}
+}
+}
+
 async function quickSort(array, start=0, end=array.length-1) {
   if(start >= end) return;
 

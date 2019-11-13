@@ -13,6 +13,7 @@ window.onload = () => {
   let list = createElement("select", "sortingList");
   let bubbleOption = createElement("option", undefined, "algorithmOptions");
   let cocktailOption = createElement("option", undefined, "algorithmOptions");
+  let insertionOption = createElement("option", undefined, "algorithmOptions");
   let quickOption = createElement("option", undefined, "algorithmOptions");
   let title = createElement("h1", "canvasTitle");
   canvas = createElement("canvas", "sortingCanvas");
@@ -30,6 +31,8 @@ window.onload = () => {
   bubbleOption.innerHTML = "BubbleSort";
   cocktailOption.value = "cocktail";
   cocktailOption.innerHTML = "CocktailSort";
+  insertionOption.value = "insertion";
+  insertionOption.innerHTML = "InsertionSort";
   quickOption.value = "quick";
   quickOption.innerHTML = "QuickSort";
   title.innerHTML = "Sorting Algorithm Visualizer";
@@ -38,7 +41,7 @@ window.onload = () => {
   canvas.height = windowHeight * 0.75;
 
   // Add HTML elements
-  appendElements(list, bubbleOption, cocktailOption, quickOption);
+  appendElements(list, bubbleOption, cocktailOption,insertionOption, quickOption);
   appendElements(document.body, canvContainer, controlsContainer);
   appendElements(controlsContainer, list, slider, newButton, goButton);
   appendElements(canvContainer, title, canvas);
@@ -63,6 +66,7 @@ function buttonPress() {
     case "quick": quickSort(valueArray); break;
     case "bubble": bubbleSort(valueArray); break;
     case "cocktail": cocktailSort(valueArray); break;
+    case "insertion": insertionSort(valueArray); break;
   }
 }
 
