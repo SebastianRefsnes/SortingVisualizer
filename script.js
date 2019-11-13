@@ -48,11 +48,11 @@ window.onload = () => {
   setInterval(draw, 60);
 }
 
-function draw(){
-  drawNewBackground(valueArray,ctx);
+function draw() {
+  drawNewBackground(valueArray, ctx);
 }
 
-function buttonPress(){
+function buttonPress() {
   if(this.id == "new") valueArray = newArray(document.getElementById("arraySlider").value);
 
   let val = document.getElementById("sortingList").value;
@@ -63,7 +63,7 @@ function buttonPress(){
   }
 }
 
-function sliderChange(){
+function sliderChange() {
   valueArray = newArray(this.value);
 }
 
