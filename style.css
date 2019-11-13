@@ -1,6 +1,9 @@
 body{
   background-color: #474747;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 #canvasContainer{
 }
 #canvasTitle{
@@ -35,7 +38,7 @@ body{
 
 }
 .buttons{
-  width: 80px;
+  width: 120px;
   height: 30px;
   border: none;
   background-color: grey;

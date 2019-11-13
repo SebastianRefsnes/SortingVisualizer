@@ -42,8 +42,6 @@ async function quickSort(array,start=0,end=array.length-1){
      quickSort(array,start,pivotFinal-1)
     ,quickSort(array,pivotFinal+1,end)
   ]);
-
-
 }
 
 async function partition(array,start,end){
@@ -59,9 +57,7 @@ async function partition(array,start,end){
   return pivotIndex;
 }
 
-
-
-function drawNewBackground(array,context,color="white",min=0, max=100){
+function drawNewBackground(array,context,color="white",min=0, max=1000){
   context.fillStyle = "black";
   context.fillRect(0,0,canvas.width,canvas.height);
 
@@ -74,7 +70,7 @@ function drawNewBackground(array,context,color="white",min=0, max=100){
   });
 }
 
-function newArray(points, min=10, max=100){
+function newArray(points, min=10, max=1000){
   let array = [];
   for(let i = 0; i < points; i++){
     let randomVal = Math.random();

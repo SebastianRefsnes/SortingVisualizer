@@ -1,10 +1,16 @@
 window.onload = init;
 canvas = "";
 ctx = "";
+windowWidth = 0;
+windowHeight = 0;
 valueArray = [];
 swapDelay = 1;
 
 function init(){
+
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight;
+
   let canvContainer = document.createElement("div");
   canvContainer.id = "canvasContainer";
 
@@ -17,6 +23,13 @@ function init(){
   goButton.innerHTML = "Sort!";
   goButton.id = "sortButton";
   goButton.addEventListener("click",buttonPress);
+
+  let newButton = document.createElement("button");
+  newButton.classList.add("algoControls");
+  newButton.classList.add("buttons");
+  newButton.innerHTML = "Randomize!";
+  newButton.id = "new";
+  newButton.addEventListener("click",buttonPress);
 
 
   let slider = document.createElement("input");
@@ -58,14 +71,15 @@ function init(){
 
   canvas = document.createElement("canvas");
   canvas.id = "sortingCanvas";
-  canvas.width = "1600";
-  canvas.height = "600";
+  canvas.width =(windowWidth*0.9);
+  canvas.height = (windowHeight*0.75);
 
   document.body.appendChild(canvContainer);
   document.body.appendChild(controlsContainer);
 
   controlsContainer.appendChild(list);
   controlsContainer.appendChild(slider);
+  controlsContainer.appendChild(newButton);
   controlsContainer.appendChild(goButton);
 
   canvContainer.appendChild(title);
@@ -83,6 +97,10 @@ function draw(){
 }
 
 function buttonPress(){
+  if(this.id == "new"){
+    valueArray = newArray(document.getElementById("arraySlider").value);
+    return;
+  }
   let val = document.getElementById("sortingList").value;
   switch (val) {
     case "quick":
